@@ -7,7 +7,5 @@ class InvalidJobURL(InvalidURL):
         super().__init__(message)
 
     @property
-    def url(
-        self,
-    ) -> str:
+    def url(self) -> str:
         return self._url

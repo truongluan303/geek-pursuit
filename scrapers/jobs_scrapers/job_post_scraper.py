@@ -55,13 +55,6 @@ class JobPostScraper:
             is_direct_view = True
 
         given_job_url = job
-        print(given_job_url)
-
-        try:
-            assert requests.head(job).status_code == 200
-        except:
-            _logger.error(f"Job ULR is not a valid URL: {given_job_url}")
-            raise InvalidJobURL(given_job_url)
 
         is_direct_view = job.startswith(self._VIEW_LINK_PREFIX)
 
@@ -91,7 +84,7 @@ class JobPostScraper:
             _logger.error(f"Job ULR is not a valid URL: {given_job_url}")
             raise InvalidJobURL(given_job_url)
 
-    def _extract_from_direct_view(self, url: str) -> Optional[JobInfo]:
+    def _extract_from_direct_view(self, url: str) -> JobInfo:
         """
         Extract the job information from a direct job view.
         Args:
@@ -105,7 +98,8 @@ class JobPostScraper:
 
         posted_time_ago = soup.find_all(class_=self.TIME_AGO_KEY)
         if not posted_time_ago:
-            return None
+            _logger.error("Given URL does not contain LinkedIn job post data.")
+            raise InvalidJobURL(url)
         posted_time_ago = posted_time_ago[0].get_text(strip=True)
 
         summary = soup.find("title").get_text()
