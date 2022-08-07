@@ -1,7 +1,7 @@
+import logging
 import re
 from dataclasses import dataclass
 from datetime import timedelta
-from http.client import InvalidURL
 from typing import Optional
 from typing import Union
 
@@ -9,7 +9,10 @@ import html2text
 import requests
 from bs4 import BeautifulSoup as bs
 
-from utils.validator import is_valid_url
+from scrapers.jobs_scrapers.exceptions import InvalidJobURL
+
+
+_logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -51,8 +54,14 @@ class JobPostScraper:
             job = self._url_from_job_id(job)
             is_direct_view = True
 
-        if not is_valid_url(job):
-            raise InvalidURL()
+        given_job_url = job
+        print(given_job_url)
+
+        try:
+            assert requests.head(job).status_code == 200
+        except:
+            _logger.error(f"Job ULR is not a valid URL: {given_job_url}")
+            raise InvalidJobURL(given_job_url)
 
         is_direct_view = job.startswith(self._VIEW_LINK_PREFIX)
 
@@ -67,7 +76,8 @@ class JobPostScraper:
                 job_id = self._extract_current_job_id(job)
                 job = self._url_from_job_id(job_id)
             else:
-                raise InvalidURL()
+                _logger.error(f"Job ULR is not a valid URL: {given_job_url}")
+                raise InvalidJobURL(given_job_url)
 
         # If the job is a directly viewed one, we want to grab only the url resource
         # patch and ignore all the query parameters so we can get a clean url.
@@ -75,7 +85,11 @@ class JobPostScraper:
         else:
             job = job.split("?")[0]
 
-        return self._extract_from_direct_view(job)
+        try:
+            return self._extract_from_direct_view(job)
+        except:
+            _logger.error(f"Job ULR is not a valid URL: {given_job_url}")
+            raise InvalidJobURL(given_job_url)
 
     def _extract_from_direct_view(self, url: str) -> Optional[JobInfo]:
         """
