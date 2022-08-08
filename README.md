@@ -1,11 +1,16 @@
 # 🚀 [in]API
-A REST API enabling developers to get scraped data from LinkedIn.
+A REST API enabling developers to get scraped data from LinkedIn easily by just sending in GET requests. No authentication needed as well.
 
-![scrape-gif](https://media.giphy.com/media/xT3i0OI0a48KSslgsw/giphy.gif)
+![scrape](https://media.giphy.com/media/xUPJPuBSBM4GEMb7Ec/giphy.gif)
+
+I have made this a REST API instead of a library so that it is not limited to the Python programming language. I have found more popular languages such as Python, JavaScript, etc to have a lot of libraries for literally anything. However, for other less popular and propably lower-level languages, sometimes it feels like there are not enough libraries to help developers out. So I think making an API will prevent us from being blocked by the "language boundaries" :D
 
 ---
 
-# Functionalities
+## What Can You Do With It?
+![show-me](https://media.giphy.com/media/iibEPf8xEDTedJcDJr/giphy.gif)
+
+---
 
 ### Get Job Information
 
@@ -21,17 +26,17 @@ Example requests:
 
 - With a URL to a current job in a job list: https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906
 
-The API should also works even with query parameters in the URL. So there's a good chance you don't have to clean up the URL before using it.
+The API should also works even with query parameters in the URL. So there's a good chance you don't have to clean up the LinkedIn job URL before using it.
 
-A successful returned value should have this format:
+A successful returned payload should have this format:
 
-- title: the position's title,
-- company: the company's name,
-- summary: the position's summary,
-- location: the location of this position,
-- posted_time_ago: indicates how long the job has been posted,
-- company_pic_url: link to the company's logo,
-- url: the url to the directly view the job post
+- __title__: the position's title,
+- __company__: the company's name,
+- __summary__: the position's summary,
+- __location__: the location of this position,
+- __posted_time_ago__: indicates how long the job has been posted,
+- __company_pic_url__: link to the company's logo,
+- __url__: the url to the directly view the job post
 
 Here is an example successful payload:
 ```json
@@ -51,6 +56,13 @@ Here is an example successful payload:
   ]
 }
 ```
+
+---
+
+### Coming Soon!
+
+- Endpoint to get LinkedIn profile information from URL or profile ID
+- Endpoint to get LinkedIn company information from URL or company ID
 
 ---
 
