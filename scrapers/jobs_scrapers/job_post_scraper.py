@@ -37,7 +37,7 @@ class JobPostScraper:
         self._COMPANY_KEY = "topcard__org-name-link"
         self._COMPANY_PIC_KEY = "sub-nav-cta__image"
         self._IMG_SRC_KEY = "data-delayed-url"
-        self.TIME_AGO_KEY = "posted-time-ago__text"
+        self._TIME_AGO_KEY = "posted-time-ago__text"
         self._DESCRIPTION_KEY = "description__text"
         self._LOCATION_KEY = "sub-nav-cta__meta-text"
 
@@ -96,7 +96,7 @@ class JobPostScraper:
         html = response.content
         soup = bs(html, "lxml")
 
-        posted_time_ago = soup.find_all(class_=self.TIME_AGO_KEY)
+        posted_time_ago = soup.find_all(class_=self._TIME_AGO_KEY)
         if not posted_time_ago:
             _logger.error("Given URL does not contain LinkedIn job post data.")
             raise InvalidJobURL(url)
