@@ -14,9 +14,12 @@ Endpoint: https://linkedin-scrape-api.herokuapp.com/job-info
 You can send a `GET` request with a param `job_url_or_id` to receive the basic information including about a job post.
 
 Example requests:
+
 - With a job ID param: https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=3210916383
-- With a URL to a direct job post: https://www.linkedin.com/jobs/view/3207726319/
-- With a URL to a current job in a job list: https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906
+
+- With a URL to a direct job post: https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=https://www.linkedin.com/jobs/view/3207726319/
+
+- With a URL to a current job in a job list: https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906
 
 The API should also works even with query parameters in the URL. So there's a good chance you don't have to clean up the URL before using it.
 
