@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+from subprocess import run
+from sys import argv
+from sys import executable as exe
+
+
+if __name__ == "__main__":
+    run([exe, "-m", "pytest"] + argv[1:])
