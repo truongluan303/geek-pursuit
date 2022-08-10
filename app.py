@@ -6,8 +6,8 @@ from flask import request
 from flask import Response
 
 from input_validator import job_info_validator
-from scrapers.jobs_scrapers.exceptions import InvalidJobURL
-from scrapers.jobs_scrapers.job_post_scraper import get_job_info
+from scrapers.jobs_scraper.exceptions import InvalidJobURL
+from scrapers.jobs_scraper.job_post_scraper import get_job_info
 
 
 app = Flask(__name__)

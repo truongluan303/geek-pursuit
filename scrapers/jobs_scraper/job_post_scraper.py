@@ -9,7 +9,7 @@ import html2text
 import requests
 from bs4 import BeautifulSoup as bs
 
-from scrapers.jobs_scrapers.exceptions import InvalidJobURL
+from scrapers.jobs_scraper.exceptions import InvalidJobURL
 
 
 _logger = logging.getLogger(__name__)
