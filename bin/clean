@@ -1,26 +1,6 @@
 #!/usr/bin/env python3
 # A small python script to clean up cached files
-import os
+import pathlib
 
-
-_dirs_to_remove = ("__pycache__", ".pytest_cache")
-
-_excludes = (".venv", ".git")
-
-
-def clean(path: str) -> None:
-    for child in os.listdir(path):
-        if not os.path.isdir(child) or child in _excludes:
-            continue
-
-        full_child_path = f"{path}/{dir}"
-        if child in _dirs_to_remove:
-            print(f"Removing {full_child_path}...", end=" ")
-            os.rmdir(full_child_path)
-            print("Done")
-        else:
-            clean(f"{full_child_path}")
-
-
-if __name__ == "__main__":
-    clean(os.getcwd())
+[p.unlink() for p in pathlib.Path(".").rglob("*.py[co]")]
+[p.unlink() for p in pathlib.Path(".").rglob("__pycache__")]
