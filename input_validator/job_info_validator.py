@@ -7,6 +7,12 @@ from config import JobInfoGetParams
 from utils.validator import is_valid_url
 
 
+_BAD_PUBLIC_ID_MSG = (
+    "Public ID must contain 3-100 letters or numbers "
+    "and no spaces, symbols, or special characters."
+)
+
+
 def validate_input_args(args) -> Optional[Response]:
     if not args.get(JobInfoGetParams.JOB_URL_OR_ID):
         return jsonify(
@@ -30,5 +36,14 @@ def invalid_job_url_result(url: str, is_job_id: bool) -> Response:
         {
             "success": False,
             "error": message,
+        }
+    )
+
+
+def invalid_personal_public_id_result() -> Response:
+    return jsonify(
+        {
+            "success": False,
+            "error": _BAD_PUBLIC_ID_MSG,
         }
     )
