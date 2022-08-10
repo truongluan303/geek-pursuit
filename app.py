@@ -7,10 +7,10 @@ from flask import request
 from flask import Response
 
 from input_validator import job_info_validator
-from linkedin_api_wrapper import get_user_profile
-from linkedin_api_wrapper.exceptions import InvalidPersonalPublicID
 from scrapers.jobs_scraper import get_job_info
 from scrapers.jobs_scraper import InvalidJobURL
+from scrapers.profile_scraper import get_user_profile
+from scrapers.profile_scraper import InvalidPersonalPublicID
 
 
 app = Flask(__name__)
