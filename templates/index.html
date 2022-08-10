@@ -1,0 +1,51 @@
+<h1 id="-in-api">How to use [in]API?</h1>
+
+<h3 id="get-job-information">Get Job Information</h3>
+<p>Endpoint: <a href="https://linkedin-scrape-api.herokuapp.com/job-info">https://linkedin-scrape-api.herokuapp.com/job-info</a></p>
+<p>You can send a <code>GET</code> request with a param <code>job_url_or_id</code> to receive the basic information including about a job post.</p>
+<p>Example requests:</p>
+<ul>
+<li><p>With a job ID param: <a href="https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=3210916383">https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=3210916383</a></p>
+</li>
+<li><p>With a URL to a direct job post: <a href="https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=https://www.linkedin.com/jobs/view/3207726319/">https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=https://www.linkedin.com/jobs/view/3207726319/</a></p>
+</li>
+<li><p>With a URL to a current job in a job list: <a href="https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906">https://linkedin-scrape-api.herokuapp.com/job-info?job_url_or_id=https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906</a></p>
+</li>
+</ul>
+<p>The API should also works even with query parameters in the URL. So there&#39;s a good chance you don&#39;t have to clean up the LinkedIn job URL before using it.</p>
+<p>A successful returned payload should have this format:</p>
+<ul>
+<li><strong>title</strong>: the position&#39;s title,</li>
+<li><strong>company</strong>: the company&#39;s name,</li>
+<li><strong>summary</strong>: the position&#39;s summary,</li>
+<li><strong>location</strong>: the location of this position,</li>
+<li><strong>posted_time_ago</strong>: indicates how long the job has been posted,</li>
+<li><strong>company_pic_url</strong>: link to the company&#39;s logo,</li>
+<li><strong>url</strong>: the url to the directly view the job post</li>
+</ul>
+<p>Here is an example successful payload:</p>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"company"</span>: <span class="hljs-string">"HDR"</span>,
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Application Developer"</span>,
+      <span class="hljs-attr">"company_pic_url"</span>: <span class="hljs-string">"https://media-exp1.licdn.com/dms/image/C560BAQGfpTq19zKb0g/company-logo_100_100/0/1560873606208?e=1668038400&amp;v=beta&amp;t=Sqi9J0ca-pk5j5yop83ZtE-zuYCJOs8EL6b3OszhtU0"</span>,
+      <span class="hljs-attr">"summary"</span>:<span class="hljs-string">"HDR hiring Application Developer in Chandler, Arizona, United States | LinkedIn"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"\n\n**_About Us  \n  \n_** At HDR, we specialize in engineering, architecture, environmental..."</span>,
+      <span class="hljs-attr">"location"</span>: <span class="hljs-string">"Chandler, AZ"</span>,
+      <span class="hljs-attr">"posted_time_ago"</span>: <span class="hljs-string">"6 hours ago"</span>,
+      <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://www.linkedin.com/jobs/view/3210916383/"</span>
+    }
+  ]
+}
+</code></pre>
+<hr>
+<h3 id="coming-soon-">Coming Soon!</h3>
+<ul>
+<li>Endpoint to get LinkedIn profile information from URL or profile ID</li>
+<li>Endpoint to get LinkedIn company information from URL or company ID</li>
+</ul>
+<hr>
+<h3 id="developer-setup">Developer Setup</h3>
+<p>Check out <a href="./docs/setup.md">setup doc</a> for more information</p>

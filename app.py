@@ -2,6 +2,7 @@ from dataclasses import asdict
 
 from flask import Flask
 from flask import jsonify
+from flask import render_template
 from flask import request
 from flask import Response
 
@@ -13,6 +14,11 @@ from scrapers.jobs_scraper import InvalidJobURL
 
 
 app = Flask(__name__)
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
 @app.route("/job-info", methods=["GET"])
