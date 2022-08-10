@@ -6,8 +6,10 @@ from flask import request
 from flask import Response
 
 from input_validator import job_info_validator
-from scrapers.jobs_scrapers.exceptions import InvalidJobURL
-from scrapers.jobs_scrapers.job_post_scraper import get_job_info
+from linkedin_api_wrapper import get_user_profile
+from linkedin_api_wrapper.exceptions import InvalidPersonalPublicID
+from scrapers.jobs_scraper import get_job_info
+from scrapers.jobs_scraper import InvalidJobURL
 
 
 app = Flask(__name__)
@@ -36,6 +38,16 @@ def job_info() -> Response:
             "data": [asdict(job_info)],
         }
     )
+
+
+@app.route("/user-profile", methods=["GET"])
+def user_profile() -> Response:
+    url_or_public_id: str = request.args.get("url_or_public_id")
+    try:
+        profile = get_user_profile(url_or_public_id)
+    except InvalidPersonalPublicID:
+        return job_info_validator.invalid_personal_public_id_result(), 400
+    return jsonify({"success": True, "data": [profile]})
 
 
 if __name__ == "__main__":
