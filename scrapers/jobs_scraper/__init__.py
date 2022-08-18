@@ -1,5 +1,5 @@
+from .datatypes import JobInfo
 from .exceptions import InvalidJobURL
-from .job_post_scraper import get_job_info
-from .job_post_scraper import JobInfo
+from .linkedin_job import get_job_info as get_linkedin_job_info
 
-__all__ = ["get_job_info", "JobInfo", "InvalidJobURL"]
+__all__ = ["get_linkedin_job_info", "JobInfo", "InvalidJobURL"]
