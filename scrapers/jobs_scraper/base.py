@@ -19,7 +19,7 @@ def extract_from_direct_view(url: str, html_keys: HtmlKeys) -> JobInfo:
     """
     Extract the job information from a direct job view.
     Args:
-        url (str): The URL to the job post on LinkedIn.
+        url (str): The URL to the job post.
     Returns:
         Optional[JobInfo]: The basic information of the job.
     """
