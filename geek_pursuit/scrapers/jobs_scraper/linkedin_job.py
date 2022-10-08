@@ -3,10 +3,10 @@ import re
 from typing import Optional
 from typing import Union
 
-from scrapers.jobs_scraper.base import extract_from_direct_view
-from scrapers.jobs_scraper.datatypes import HtmlKeys
-from scrapers.jobs_scraper.datatypes import JobInfo
-from scrapers.jobs_scraper.exceptions import InvalidJobURL
+from geek_pursuit.scrapers.jobs_scraper.base import extract_from_direct_view
+from geek_pursuit.scrapers.jobs_scraper.datatypes import HtmlKeys
+from geek_pursuit.scrapers.jobs_scraper.datatypes import JobInfo
+from geek_pursuit.scrapers.jobs_scraper.exceptions import InvalidJobURL
 
 
 _logger = logging.getLogger(__name__)
