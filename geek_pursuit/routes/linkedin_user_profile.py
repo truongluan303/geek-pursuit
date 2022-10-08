@@ -7,7 +7,7 @@ from geek_pursuit.scrapers.profile_scraper import get_user_profile
 from geek_pursuit.scrapers.profile_scraper import InvalidPersonalPublicID
 
 
-@routes.route("/linkedin/user-profile", methods=["GET"])
+@routes.route("/linkedin/linkedin-user-profile", methods=["GET"])
 def user_profile() -> Response:
     url_or_public_id: str = request.args.get("url_or_public_id")
     try:
