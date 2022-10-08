@@ -4,9 +4,9 @@ import html2text
 import requests
 from bs4 import BeautifulSoup as bs
 
-from scrapers.jobs_scraper.datatypes import HtmlKeys
-from scrapers.jobs_scraper.datatypes import JobInfo
-from scrapers.jobs_scraper.exceptions import InvalidJobURL
+from geek_pursuit.scrapers.jobs_scraper.datatypes import HtmlKeys
+from geek_pursuit.scrapers.jobs_scraper.datatypes import JobInfo
+from geek_pursuit.scrapers.jobs_scraper.exceptions import InvalidJobURL
 
 _logger = logging.getLogger(__name__)
 

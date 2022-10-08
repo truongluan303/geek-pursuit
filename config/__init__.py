@@ -35,10 +35,6 @@ except ImportError:
     _logger.info(f"Settings file for {ENV} environment not found, using defaults!")
 
 
-class JobInfoGetParams:
-    JOB_URL_OR_ID = "job_url_or_id"
-
-
 # clean up the exports so that they don't appear in exports
 del os
 del logging
