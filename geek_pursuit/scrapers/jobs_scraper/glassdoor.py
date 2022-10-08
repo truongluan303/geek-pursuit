@@ -2,7 +2,7 @@ import logging
 from typing import Optional
 from typing import Union
 
-from scrapers.jobs_scraper.datatypes import JobInfo
+from geek_pursuit.scrapers.jobs_scraper.datatypes import JobInfo
 
 
 _logger = logging.getLogger(__name__)

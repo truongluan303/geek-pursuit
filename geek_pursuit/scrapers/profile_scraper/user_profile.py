@@ -1,7 +1,7 @@
-from scrapers.profile_scraper.exceptions import InvalidPersonalProfileURL
-from scrapers.profile_scraper.exceptions import InvalidPersonalPublicID
-from utils.validator import is_valid_personal_public_id
-from utils.validator import is_valid_url
+from geek_pursuit.scrapers.profile_scraper.exceptions import InvalidPersonalProfileURL
+from geek_pursuit.scrapers.profile_scraper.exceptions import InvalidPersonalPublicID
+from geek_pursuit.utils.validator import is_valid_personal_public_id
+from geek_pursuit.utils.validator import is_valid_url
 
 
 _URL_PREFIX = "https://www.linkedin.com/in/"
