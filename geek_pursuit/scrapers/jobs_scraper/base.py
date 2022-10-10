@@ -4,7 +4,7 @@ import html2text
 import requests
 from bs4 import BeautifulSoup as bs
 
-from geek_pursuit.scrapers.jobs_scraper.datatypes import HtmlKeys
+from geek_pursuit.scrapers.jobs_scraper.datatypes import JobHtmlKeys
 from geek_pursuit.scrapers.jobs_scraper.datatypes import JobInfo
 from geek_pursuit.scrapers.jobs_scraper.exceptions import InvalidJobURL
 
@@ -15,7 +15,7 @@ HTML2TEXT: html2text.HTML2Text = html2text.HTML2Text()
 HTML2TEXT.body_width = 0
 
 
-def extract_from_direct_view(url: str, html_keys: HtmlKeys) -> JobInfo:
+def extract_from_direct_view(url: str, html_keys: JobHtmlKeys) -> JobInfo:
     """
     Extract the job information from a direct job view.
     Args:

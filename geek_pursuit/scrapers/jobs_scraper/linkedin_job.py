@@ -4,7 +4,7 @@ from typing import Optional
 from typing import Union
 
 from geek_pursuit.scrapers.jobs_scraper.base import extract_from_direct_view
-from geek_pursuit.scrapers.jobs_scraper.datatypes import HtmlKeys
+from geek_pursuit.scrapers.jobs_scraper.datatypes import JobHtmlKeys
 from geek_pursuit.scrapers.jobs_scraper.datatypes import JobInfo
 from geek_pursuit.scrapers.jobs_scraper.exceptions import InvalidJobURL
 
@@ -50,7 +50,7 @@ def get_job_info(job: Union[str, int]) -> Optional[JobInfo]:
     try:
         return extract_from_direct_view(
             job,
-            HtmlKeys(
+            JobHtmlKeys(
                 title_key="top-card-layout__title",
                 company_key="topcard__org-name-link",
                 company_pic_key="sub-nav-cta__image",

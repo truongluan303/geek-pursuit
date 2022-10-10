@@ -3,8 +3,8 @@ from flask import request
 from flask import Response
 
 from . import routes
-from geek_pursuit.scrapers.profile_scraper import get_user_profile
-from geek_pursuit.scrapers.profile_scraper import InvalidPersonalPublicID
+from geek_pursuit.scrapers.company_profile_scraper import get_user_profile
+from geek_pursuit.scrapers.company_profile_scraper import InvalidPersonalPublicID
 
 
 @routes.route("/linkedin/linkedin-user-profile", methods=["GET"])

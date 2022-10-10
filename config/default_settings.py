@@ -19,3 +19,14 @@ class OSEnvKeys:
 
 for os_env_key in OSEnvKeys.to_a():
     globals()[os_env_key] = os.environ.get(os_env_key)
+
+
+# override this in `local_settings.py` if you want to use another web driver
+WEB_DRIVER_TYPE = "chrome"
+
+# these paths should be overriden in `local_settings.py`
+CHROME_DRIVER_PATH = None
+GOOGLE_CHROME_BIN = None
+FIREFOX_DRIVER_PATH = None
+EDGE_DRIVER_PATH = None
+SAFARI_DRIVER_PATH = None

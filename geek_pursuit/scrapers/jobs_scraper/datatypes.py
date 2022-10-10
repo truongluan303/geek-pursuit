@@ -15,7 +15,7 @@ class JobInfo:
 
 
 @dataclass
-class HtmlKeys:
+class JobHtmlKeys:
     title_key: str
     company_key: str
     company_pic_key: str
