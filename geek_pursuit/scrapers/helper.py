@@ -7,6 +7,15 @@ from config import is_production
 from config import WEB_DRIVER_TYPE
 
 
+def html_source_from_js_site(url) -> str:
+    driver = generate_driver()
+    driver.start_client()
+    driver.get(url)
+    htmlsrc = driver.page_source
+    driver.quit()
+    return htmlsrc
+
+
 def generate_driver():
     # in production, the web driver should be chrome.
     # when running locally, the web driver is optional based on the developers' config.
