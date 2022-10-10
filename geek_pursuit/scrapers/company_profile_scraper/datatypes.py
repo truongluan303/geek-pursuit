@@ -5,6 +5,8 @@ from typing import Any
 from typing import Dict
 from typing import List
 
+from nullsafe import undefined
+
 from geek_pursuit.utils.string_utils import clean_whitespace
 
 
@@ -29,7 +31,7 @@ class CompanyInfo:
     def __post_init__(self) -> None:
         for field in fields(self):
             val = getattr(self, field.name)
-            if val is None:
+            if val is None or val is undefined:
                 continue
 
             if field.type is int:
