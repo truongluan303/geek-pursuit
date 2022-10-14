@@ -34,6 +34,7 @@ class Education:
 @dataclass
 class Profile:
     name: str
+    linkedin_url: str
     headline: str = None
     about: str = None
     experience: List[Experience] = None
