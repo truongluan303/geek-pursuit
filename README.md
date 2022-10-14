@@ -1,5 +1,5 @@
-# 🚀 GeekPursuit - Job Posting API
-A REST API enabling developers to get scraped job positing data easily by just sending in GET requests. No authentication needed as well.
+# 🚀 GeekPursuit - REST API for career related scraped data
+A REST API enabling developers to get scraped data regarding career stuff easily by just sending in GET requests. No authentication needed as well.
 
 ![scrape](https://media.giphy.com/media/xUPJPuBSBM4GEMb7Ec/giphy.gif)
 
@@ -14,17 +14,17 @@ I have made this a REST API instead of a library so that it is not limited to th
 
 ### Get Job Information
 
-You can send a `GET` request with a param `job_url_or_id` to receive the basic information including about a job post.
+You can send a `GET` request with a param `job_url_or_id` to receive the basic information about a job post.
 
 Example requests:
 
-- With a job ID param: https://geek-pursuit.herokuapp.com/linkedin/linkedin-job-info?job_url_or_id=3210916383
+- With a job ID param: https://geek-pursuit.herokuapp.com/linkedin-job-info?job_url_or_id=3210916383
 
-- With a URL to a direct job post: https://geek-pursuit.herokuapp.com/linkedin/linkedin-job-info?job_url_or_id=https://www.linkedin.com/jobs/view/3207726319/
+- With a URL to a direct job post: https://geek-pursuit.herokuapp.com/linkedin-job-info?job_url_or_id=https://www.linkedin.com/jobs/view/3207726319/
 
-- With a URL to a current job in a job list: https://geek-pursuit.herokuapp.com/linkedin/linkedin-job-info?job_url_or_id=https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906
+- With a URL to a current job in a job list: https://geek-pursuit.herokuapp.com/linkedin-job-info?job_url_or_id=https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906
 
-The API should also work even with query parameters in the URL. So there's a good chance you don't have to clean up the LinkedIn job URL before using it. A successfully returned payload should have this format:
+The API should also work even with query parameters in the URL. So there's a good chance you don't have to clean up the job URL before using it. A successfully returned payload should have this format:
 
 - __title__: the position's title,
 - __company__: the company's name,
