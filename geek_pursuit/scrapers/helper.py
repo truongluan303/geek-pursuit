@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from selenium import webdriver
 
 from config import CHROME_DRIVER_PATH
@@ -5,6 +6,10 @@ from config import FIREFOX_DRIVER_PATH
 from config import GOOGLE_CHROME_BIN
 from config import is_production
 from config import WEB_DRIVER_TYPE
+
+
+def soup_from_js_site(url) -> str:
+    return BeautifulSoup(html_source_from_js_site(url), "html.parser")
 
 
 def html_source_from_js_site(url) -> str:

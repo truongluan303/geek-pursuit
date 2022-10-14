@@ -291,3 +291,7 @@ fabric.properties
 .vscode
 
 local_settings.py
+
+# used for trying things out
+temp.py
+temp.html
