@@ -4,6 +4,8 @@ from typing import Any
 from typing import Dict
 from typing import List
 
+from geek_pursuit.utils.iter_utils import compact
+
 
 @dataclass
 class Experience:
@@ -38,8 +40,9 @@ class Profile:
     education: List[Education] = None
 
     def to_json(self) -> Dict[str, Any]:
-        return {
-            **asdict(self),
-            "experience": [asdict(ex) for ex in self.experience],
-            "education": [asdict(ed) for ed in self.education],
-        }
+        data = compact(asdict(self))
+        if self.experience:
+            data["experience"] = [compact(asdict(ex)) for ex in self.experience]
+        if self.education:
+            data["education"] = [compact(asdict(ed)) for ed in self.education]
+        return data

@@ -14,7 +14,7 @@ from geek_pursuit.scrapers.user_profile_scraper.exceptions import (
 )
 from geek_pursuit.utils.iter_utils import compact
 from geek_pursuit.utils.string_utils import clean_whitespace
-from geek_pursuit.utils.validator import is_valid_personal_public_id
+from geek_pursuit.utils.validator import is_valid_linkedin_personal_public_id
 from geek_pursuit.utils.validator import is_valid_url
 
 
@@ -22,8 +22,8 @@ HTML2TEXT: html2text.HTML2Text = html2text.HTML2Text()
 HTML2TEXT.body_width = 0
 
 
-def get_profile(url_or_public_id: str) -> dict:
-    if not is_valid_url(url_or_public_id) and not is_valid_personal_public_id:
+def get_profile(url_or_public_id: str) -> Profile:
+    if not is_valid_url(url_or_public_id) and not is_valid_linkedin_personal_public_id:
         raise InvalidPersonalPublicID(url_or_public_id)
     if is_valid_url(url_or_public_id) and not url_or_public_id.startswith(
         LinkedinURLHelper.PROFILE_LINK_PREFIX
