@@ -24,9 +24,15 @@ for os_env_key in OSEnvKeys.to_a():
 # override this in `local_settings.py` if you want to use another web driver
 WEB_DRIVER_TYPE = "chrome"
 
-# these paths should be overriden in `local_settings.py`
+# --- these paths should be overriden in `local_settings.py` ---
+
+# NOTE: Since our production uses Firefox as the browser for scraping data,
+# it is recommended to also use Firefox locally as the selenium browser
 CHROME_DRIVER_PATH = None
 GOOGLE_CHROME_BIN = None
 FIREFOX_DRIVER_PATH = None
+FIREFOX_BIN = None
 EDGE_DRIVER_PATH = None
+EDGE_BIN = None
 SAFARI_DRIVER_PATH = None
+SAFARI_BIN = None

@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 from config import CHROME_DRIVER_PATH
+from config import FIREFOX_BIN
 from config import FIREFOX_DRIVER_PATH
 from config import GOOGLE_CHROME_BIN
 from config import is_production
@@ -24,7 +26,17 @@ def html_source_from_js_site(url) -> str:
 def generate_driver():
     # in production, the web driver should be chrome.
     # when running locally, the web driver is optional based on the developers' config.
-    if is_production() or WEB_DRIVER_TYPE == "chrome":
+    if is_production() or WEB_DRIVER_TYPE == "firefox":
+        options = webdriver.FirefoxOptions()
+        options.add_argument("-headless")
+        options.add_argument("-disable-gpu")
+        options.add_argument("-no-sandbox")
+
+        binary = FirefoxBinary(*([FIREFOX_BIN] if is_production() else []))
+        return webdriver.Firefox(
+            firefox_binary=binary, executable_path=FIREFOX_DRIVER_PATH, options=options
+        )
+    if WEB_DRIVER_TYPE == "chrome":
         chrome_options = webdriver.ChromeOptions()
         chrome_options.binary_location = GOOGLE_CHROME_BIN
         chrome_options.add_argument("--headless")
@@ -33,8 +45,6 @@ def generate_driver():
         return webdriver.Chrome(
             executable_path=CHROME_DRIVER_PATH, chrome_options=chrome_options
         )
-    if WEB_DRIVER_TYPE == "firefox":
-        return webdriver.Firefox(executable_path=FIREFOX_DRIVER_PATH)
     if WEB_DRIVER_TYPE == "edge":
         return webdriver.Edge()
     if WEB_DRIVER_TYPE == "safari":
