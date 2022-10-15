@@ -145,22 +145,27 @@ def get_profile(url_or_public_id: str) -> Profile:
         education = None
 
     return Profile(
-        **{
-            "name": clean_whitespace(
-                soup.find(class_="top-card-layout__title").get_text()
-            ),
-            "linkedin_url": url.strip(),
-            "headline": clean_whitespace(
-                _(soup.find(class_="top-card-layout__headline")).get_text()
-            ),
-            "about": (
-                None
-                if not soup.find(class_="core-section-container__content")
-                else HTML2TEXT.handle(
-                    str(soup.find(class_="core-section-container__content"))
-                ).strip()
-            ),
-            "experience": experience,
-            "education": education,
-        }
+        **compact(
+            {
+                "name": clean_whitespace(
+                    soup.find(class_="top-card-layout__title").get_text()
+                ),
+                "linkedin_url": url.strip(),
+                "headline": clean_whitespace(
+                    _(soup.find(class_="top-card-layout__headline")).get_text()
+                ),
+                "about": (
+                    None
+                    if clean_whitespace(
+                        _(soup.find(class_="core-section-container__title")).get_text()
+                    )
+                    != "About"
+                    else HTML2TEXT.handle(
+                        str(soup.find(class_="core-section-container__content"))
+                    ).strip()
+                ),
+                "experience": experience,
+                "education": education,
+            }
+        )
     )
