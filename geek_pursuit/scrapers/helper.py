@@ -24,9 +24,7 @@ def html_source_from_js_site(url) -> str:
 
 
 def generate_driver():
-    # in production, the web driver should be chrome.
-    # when running locally, the web driver is optional based on the developers' config.
-    if is_production() or WEB_DRIVER_TYPE == "firefox":
+    if WEB_DRIVER_TYPE == "firefox":
         options = webdriver.FirefoxOptions()
         options.add_argument("-headless")
         options.add_argument("-disable-gpu")
