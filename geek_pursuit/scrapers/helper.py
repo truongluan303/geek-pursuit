@@ -10,16 +10,19 @@ from config import is_production
 from config import WEB_DRIVER_TYPE
 
 
-def soup_from_js_site(url) -> str:
-    return BeautifulSoup(html_source_from_js_site(url), "html.parser")
+def soup_from_js_site(url, driver=None) -> str:
+    return BeautifulSoup(html_source_from_js_site(url, driver), "html.parser")
 
 
-def html_source_from_js_site(url) -> str:
-    driver = generate_driver()
+def html_source_from_js_site(url, driver=None) -> str:
+    should_quit_driver = not driver
+    if not driver:
+        driver = generate_driver()
     driver.start_client()
     driver.get(url)
     htmlsrc = driver.page_source
-    driver.quit()
+    if should_quit_driver:
+        driver.quit()
     return htmlsrc
 
 

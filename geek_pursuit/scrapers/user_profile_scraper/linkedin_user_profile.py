@@ -1,3 +1,4 @@
+import logging
 from typing import List
 from typing import Optional
 
@@ -5,6 +6,7 @@ import html2text
 from bs4 import BeautifulSoup
 from nullsafe import _
 
+from geek_pursuit.scrapers.helper import generate_driver
 from geek_pursuit.scrapers.helper import soup_from_js_site
 from geek_pursuit.scrapers.linkedin_helper import LinkedinURLHelper
 from geek_pursuit.scrapers.user_profile_scraper.datatypes import Education
@@ -26,6 +28,8 @@ from geek_pursuit.utils.validator import is_valid_url
 HTML2TEXT: html2text.HTML2Text = html2text.HTML2Text()
 HTML2TEXT.body_width = 0
 
+_logger = logging.getLogger(__name__)
+
 
 def get_profile(url_or_public_id: str) -> Profile:
     if not is_valid_url(url_or_public_id) and not is_valid_linkedin_personal_public_id:
@@ -42,42 +46,49 @@ def get_profile(url_or_public_id: str) -> Profile:
         url = url_or_public_id
     else:
         url = LinkedinURLHelper.PROFILE_LINK_PREFIX + url_or_public_id
-    soup = soup_from_js_site(url)
+    driver = generate_driver()
+    soup = soup_from_js_site(url, driver)
 
-    if not soup.find(class_="top-card-layout__title"):
-        raise (InvalidPersonalPublicID if is_public_id else InvalidPersonalProfileURL)(
-            url_or_public_id
-        )
+    try:
+        name = clean_whitespace(soup.find(class_="top-card-layout__title").get_text())
+        if not name:
+            raise (
+                InvalidPersonalPublicID if is_public_id else InvalidPersonalProfileURL
+            )(url_or_public_id)
 
-    return Profile(
-        **compact(
-            {
-                "name": clean_whitespace(
-                    soup.find(class_="top-card-layout__title").get_text()
-                ),
-                "linkedin_url": url.strip(),
-                "headline": clean_whitespace(
-                    _(soup.find(class_="top-card-layout__headline")).get_text()
-                ),
-                "about": (
-                    None
-                    if clean_whitespace(
-                        _(soup.find(class_="core-section-container__title")).get_text()
-                    )
-                    != "About"
-                    else HTML2TEXT.handle(
-                        str(soup.find(class_="core-section-container__content"))
-                    ).strip()
-                ),
-                "experience": _extract_experience(
-                    _(soup.find(class_="experience__list"))
-                ),
-                "education": _extract_education(
-                    _(soup.find(class_="education__list")).find_all("li")
-                ),
-            }
+        return Profile(
+            **compact(
+                {
+                    "name": name,
+                    "profile_image_url": soup.find("img", attrs={"alt": name})["src"],
+                    "linkedin_url": url.strip(),
+                    "headline": clean_whitespace(
+                        _(soup.find(class_="top-card-layout__headline")).get_text()
+                    ),
+                    "about": (
+                        None
+                        if clean_whitespace(
+                            _(
+                                soup.find(class_="core-section-container__title")
+                            ).get_text()
+                        )
+                        != "About"
+                        else HTML2TEXT.handle(
+                            str(soup.find(class_="core-section-container__content"))
+                        ).strip()
+                    ),
+                    "experience": _extract_experience(
+                        _(soup.find(class_="experience__list"))
+                    ),
+                    "education": _extract_education(
+                        _(soup.find(class_="education__list")).find_all("li")
+                    ),
+                }
+            )
         )
-    )
+    except Exception:
+        driver.quit()
+        raise
 
 
 def _extract_experience(

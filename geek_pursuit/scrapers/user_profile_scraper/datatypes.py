@@ -35,6 +35,7 @@ class Education:
 class Profile:
     name: str
     linkedin_url: str
+    profile_image_url: str = None
     headline: str = None
     about: str = None
     experience: List[Experience] = None
