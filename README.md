@@ -1,4 +1,7 @@
 # 🚀 GeekPursuit - REST API for career related scraped data
+
+### Note: Heroku has removed free tier deployment. So the links are not working for now. Will soon re-deploy this project on another platform and make it work again🤞
+
 A REST API enabling developers to get scraped data regarding career stuff easily by just sending in GET requests. No authentication needed as well.
 
 ![scrape](https://media.giphy.com/media/xUPJPuBSBM4GEMb7Ec/giphy.gif)
