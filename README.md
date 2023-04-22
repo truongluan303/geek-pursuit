@@ -21,11 +21,11 @@ You can send a `GET` request with a param `job_url_or_id` to receive the basic i
 
 Example requests:
 
-- With a job ID param: https://geek-pursuit.herokuapp.com/linkedin-job-info?job_url_or_id=3210916383
+- With a job ID param: https://geek-persuit.onrender.com/linkedin-job-info?job_url_or_id=3210916383
 
-- With a URL to a direct job post: https://geek-pursuit.herokuapp.com/linkedin-job-info?job_url_or_id=https://www.linkedin.com/jobs/view/3207726319/
+- With a URL to a direct job post: https://geek-persuit.onrender.com/linkedin-job-info?job_url_or_id=https://www.linkedin.com/jobs/view/3207726319/
 
-- With a URL to a current job in a job list: https://geek-pursuit.herokuapp.com/linkedin-job-info?job_url_or_id=https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906
+- With a URL to a current job in a job list: https://geek-persuit.onrender.com/linkedin-job-info?job_url_or_id=https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3202709906
 
 The API should also work even with query parameters in the URL. So there's a good chance you don't have to clean up the job URL before using it. A successfully returned payload should have this format:
 
