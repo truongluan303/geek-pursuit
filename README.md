@@ -4,16 +4,11 @@
 
 A REST API enabling developers to get scraped data regarding career stuff easily by just sending in GET requests. No authentication needed as well.
 
-![scrape](https://media.giphy.com/media/xUPJPuBSBM4GEMb7Ec/giphy.gif)
-
-I have made this a REST API instead of a library so that it is not limited to the Python programming language. I have found more popular languages such as Python, JavaScript, etc to have a lot of libraries for literally anything. However, for other less popular and probably lower-level languages, sometimes it feels like there are not enough libraries to help developers out. So I think making an API will prevent us from being blocked by the "language boundaries" :D
-
----
+<p align="center">
+  <img src="https://media.giphy.com/media/xUPJPuBSBM4GEMb7Ec/giphy.gif" />
+</p>
 
 ## What Can You Do With It?
-![show-me](https://media.giphy.com/media/iibEPf8xEDTedJcDJr/giphy.gif)
-
----
 
 ### Get Job Information
 
